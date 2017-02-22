@@ -2,16 +2,19 @@
 #define LED PORTB5  //Button 4
 #define LED_REFRESH 500  //Button 4
 
+#include <Adafruit_GFX.h>
+#include <Adafruit_ILI9341.h>
 
 volatile int16_t LEDTick=LED_REFRESH, ADCTick=0, GeneralTick=0, EncoderTick=0; //Interrupt timer variables
 
-void setup() {
-
+void setup() 
+{
   DDRB |= (1<<LED); // LED13 Output
 
   timer0_init();
-  
 }
+
+
 void timer0_init() // Timer 0 Setup to give 1ms counts
 {
   // set up timer with CTC mode
@@ -44,8 +47,7 @@ ISR (TIMER0_COMPA_vect)
 
 void ToggleLED()
 {
-PORTB ^= (1<<LED);
-  
+  PORTB ^= (1<<LED);
 }
 
 void loop() {
